@@ -32,6 +32,14 @@ function App() {
       };
     });
   };
+  const handleCancel = () => {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  };
 
   let projectContent;
 
@@ -40,6 +48,7 @@ function App() {
       <NewProject
         onSave={handleSave}
         onStartedAdded={handleOnStartAddProject}
+        onCancel={handleCancel}
       />
     );
   } else if (projectState.selectedProjectId === undefined) {
