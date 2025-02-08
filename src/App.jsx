@@ -57,6 +57,7 @@ function App() {
   } else {
     projectContent = (
       <SelectedProject
+        onDelete={handleDelete}
         project={projectState.projects.find(
           (curr) => curr.id === projectState.selectedProjectId
         )}
@@ -65,7 +66,6 @@ function App() {
   }
 
   function handleSelectProject(projectId) {
-    console.log(projectId);
     setProjectState((prevState) => {
       return {
         ...prevState,
@@ -73,6 +73,18 @@ function App() {
       };
     });
   }
+
+  function handleDelete() {
+    setProjectState((prevState) => {
+      return {
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (curr) => curr.id != prevState.selectedProjectId
+        ),
+      };
+    });
+  }
+
   return (
     <>
       <main className="h-screen my-8 flex gap-8">
